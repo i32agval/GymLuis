@@ -1,0 +1,29 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Lista de usuarios</h1>
+
+    {% if users_list %}
+    <ul>
+      {% for users in users_list %}
+      <li>
+        {% if not users.user.is_staff %}
+          <h4>Nombre:</h4>{{ users.user.first_name }}
+          <h4>Apellidos:</h4>{{ users.user.last_name }}
+          <h4>Fecha de nacimiento:</h4>{{ users.birthdate }}
+          <h4>Peso:</h4>
+          {% for peso in users.weight_data.all %}
+            {{ peso.date }}:
+            {{ peso.weight }} Kilos
+            <br>
+          {% endfor %}
+        {% endif %}
+      </li>
+      <hr><hr>
+      {% endfor %}
+
+    </ul>
+    {% else %}
+      <p>No hay usuarios registrados en el sistema.</p>
+    {% endif %}       
+{% endblock %}

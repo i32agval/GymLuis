@@ -1,0 +1,49 @@
+{% extends "base_generic.html" %}
+{% block content %}
+
+	{% for message in messages %}
+		<div class="alert {{ message.tags }} alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			{{ message }}
+		</div>
+	{% endfor %}
+
+	<form action="" method="get">{% csrf_token %}
+	    {{ filter.form }}
+	    <input type="submit" value="Buscar">
+	</form>
+	<br>
+
+	<Center><h3>Resultados de la búsqueda</h3></Center>
+	<table>
+		<tr>
+			<th width="30%">Usuario</th>
+			<th>Nombre</th>
+			<th>Apellidos</th>
+			<th>Ciudad</th>
+			<th>Acciones</th>
+		</tr>
+		{% for user in filter.qs %}
+		<tr>
+			<td><a href="{% url 'images' user.id %}"><img src="{{ user.profile_picture.url }}" class="img-circle" style="width:80px;height:80px;"></a></td>
+			<td>{{ user.user.first_name }}</td>
+			<td>{{ user.user.last_name }}</td>
+			<td>{{ user.city }}</td>
+			<td>{% if user_friends %}
+					<a href="{% url 'images' user.id %}" class="fas fa-search"></a>
+					<a href="{% url 'delete-confirm' user.id 0 %}" class="fas fa-user-slash"></a></td>
+				{% else %}
+					{% if user in relationships %}
+						<a href="{% url 'delete-confirm' user.id 1 %}" class="fas fa-user-slash"></a>
+					{% else %}
+						<a href="{% url 'add_friend' user.id 1 %}" class="fas fa-user-plus"></a>
+					{% endif %}
+					</td>
+				{% endif %}
+		</tr>
+		{% endfor %}
+	</table>
+
+{% endblock %}

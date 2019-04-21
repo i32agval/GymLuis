@@ -1,0 +1,18 @@
+{% extends "base_generic.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid bg-3">
+	<center><h3>Progresos</h3></center>
+	<div class="row">
+		{% for x in machines %}
+			<div class="col-md-6">
+				<center>{{ x.name }}</center>
+    			<img src="{% url 'view-plot' x.id %}" class="img-fluid" width="100%"/><br><br><br>
+			</div>
+		{% endfor %}
+		<center>Peso</center>
+		<img src="{% url 'view-plot' 0 %}" class="img-fluid" width="100%"/><br><br><br>
+	</div>
+</div>
+{% endblock %}

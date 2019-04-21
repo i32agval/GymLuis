@@ -1,0 +1,15 @@
+{% extends "base_generic.html" %}
+{% load static %}
+
+{% block content %}
+  <center><h3>Red social</h3></center>
+  <br>
+  <div class="row">
+      <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3">
+        <center><a href="{% url 'view_friends' %}"><img src="{% static 'amigos.png' %}" height="50%" width="50%" > <br><br>Amigos</a></center>
+      </div>
+      <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3">
+        <center><a href="{% url 'users_search' %}"><img src="{% static 'buscar.jpg' %}" height="50%" width="50%" > <br><br>Buscar usuario</a></center>
+      </div>
+  </div>
+{% endblock %}

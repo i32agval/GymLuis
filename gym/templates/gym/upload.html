@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+{% load static %}
+
+{% block content %}
+
+    <center><h3>Añadir una foto</h3></center>
+    <form  role="form"  enctype="multipart/form-data" action="" method="POST" id="upload-image-form"> 
+        {% csrf_token %}
+        <table>
+        	{{ form }}
+        </table><br>
+        <p><input type="submit" value="Añadir"></p>
+        <!-- <p><input type="file" capture="camera"></p> -->
+    </form>
+
+{% endblock %}

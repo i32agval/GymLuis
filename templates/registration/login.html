@@ -1,0 +1,39 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+{% if form.errors %}
+<p>Nombre de usuario o contraseña incorrectos. Por favor, inténtelo de nuevo.</p>
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+    <p>Su cuenta no tiene acceso a esta página. Para proceder, introduzca
+    una cuenta que sí lo tenga.</p>
+    {% else %}
+    <p>Introduzca su nombre de usuario y contraseña.</p>
+    {% endif %}
+{% endif %}
+
+<form method="post" action="{% url 'login' %}">
+{% csrf_token %}
+
+<div>
+  <td>{{ form.username.label_tag }}</td>
+  <td>{{ form.username }}</td>
+</div>
+<div>
+  <td>{{ form.password.label_tag }}</td>
+  <td>{{ form.password }}</td>
+</div>
+
+<div>
+  <input type="submit" value="login" />
+  <input type="hidden" name="next" value="{{ next }}" />
+</div>
+</form>
+
+{# Assumes you setup the password_reset view in your URLconf #}
+<p><a href="{% url 'password_reset' %}">Recordar contraseña</a></p>
+
+{% endblock %}

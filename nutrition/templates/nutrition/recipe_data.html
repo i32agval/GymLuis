@@ -1,0 +1,80 @@
+{% extends "base_generic.html" %}
+{% load static %}
+
+{% block content %}
+  <center><h3>Recetas Fatsecret</h3></center>
+  <br>
+
+  <!-- {{ form }}
+  <select name="recipe_type">
+    {% for key, value in recipe_type.items %}
+      <option value="{{ key }}">{{ value }}</option>
+    {% endfor %}
+  </select> -->
+  {% for message in messages %}
+    <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      {{ message }}
+    </div>
+  {% endfor %}
+  <form method="post" id="recipeForm" data-recipes-url="{% url 'ajax-load-recipes' %}" novalidate>
+    {% csrf_token %}
+        <b>Tipo de receta:</b> {{ form.recipe_type }}<br>
+        <b>Receta:</b> <select id="id_recipe" name="recipe"></select>
+  </form>
+<br>
+  <form method="post" id="recipeFormTable" data-recipesTable-url="{% url 'ajax-load-recipesTable' %}" novalidate>
+    {% csrf_token %}
+    <table id="recipeTable" style="display:none">
+      <tr>
+        <th>Imagen</th><td></td>
+      </tr>
+      <tr>
+        <th>Ingredientes</th><td></td>
+      </tr>
+      <tr>
+        <th>Receta</th><td></td>
+      </tr>
+      <tr>
+        <th>Nutrientes</th><td></td>
+      </tr>
+    </table>
+  </form>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script>
+    $("#id_recipe_type").change(function () {
+      var url = $("#recipeForm").attr("data-recipes-url");
+      var recipeTypeId = $(this).val();
+
+      $.ajax({
+        url: url,
+        data: {
+          'recipe_type': recipeTypeId
+        },
+        success: function (data) {
+          $("#id_recipe").html(data);
+        }
+      });
+    });
+
+    $("#id_recipe").change(function () {
+      var url = $("#recipeFormTable").attr("data-recipesTable-url");
+      var recipeId = $(this).val();
+
+      $.ajax({
+        url: url,
+        data: {
+          'recipe': recipeId
+        },
+        success: function (data) {
+          $("#recipeTable").html(data);
+          $("#recipeTable").show();
+        }
+      });
+    });
+  </script>
+
+{% endblock %}

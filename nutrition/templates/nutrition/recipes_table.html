@@ -1,0 +1,40 @@
+<table>
+	<tr>
+		<th>Imagen</th>
+		<td><a target="_blank" href="{{ url_image }}"><img src="{{ url_image }}" class="img-responsive" heigh="40%" width="40%"><br>
+			{% if cooking_time_min %}
+				Cooking time: {{ cooking_time_min }} minutes.
+			{% endif %}
+		</td>
+	</tr>
+	<tr>
+		<th>Ingredientes</th>
+		<td>
+  			{% for x in ingredients_list %}
+  				{{ x }}<br>
+  			{% endfor %}
+  		</td>
+	</tr>
+	<tr>
+		<th>Receta</th>
+		<td>
+  			{% for x in description %}
+  				{{ x }}<br>
+  			{% endfor %}
+  		</td>
+	</tr>
+	<tr>
+		<th>Nutrientes</th>
+  		<td>
+            {% for x, y in nutrients.items %}
+            	<b>{{ x }}:</b> {{ y }}<br>
+            {% endfor %}
+			<!--{% for x, y in nutrientes.items %}
+            		<b>{{ x }}:</b> {{ y }}
+            		{% if forloop.counter|divisibleby:4 %}
+	  					<br>
+            		{% endif %}
+	  			{% endfor %} -->
+  		</td>
+  	</tr>
+</table>

@@ -1,0 +1,44 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+{% for message in messages %}
+  <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    {{ message }}
+  </div>
+{% endfor %}
+    
+  {% if not user.is_staff %}
+    <center><h3>Histórico de pesos</h3></center><br>
+  {% endif %}
+  <a href="{% url 'new_weight2' pk %}" class="btn btn-success">Nuevo peso</a><br><br>
+  <table>
+    <tr>
+      <th>Máquina</th>
+      <th>Ejercicio</th>
+      <th>Fecha</th>
+      <th>Peso (Kg)</th>
+      <th>Acciones</th>
+    </tr>
+    <tr>
+      <td rowspan="{{ query2 }}"><img src="{{ machine.image.url }}" height="30%" width="60%"><br>
+      {{ machine.name }}<br>
+      Grupo muscular: {{ machine.get_muscle_group_display }}
+      </td>
+    </tr>
+    {% for x in query %}
+      <tr>
+          <td>{{ x.name }}</td>
+          <td>{{ x.date }}</td>
+          <td>{{ x.weight }}</td>
+          <td><a href="{% url 'exercise_edit' x.id machine.id %}" class="fas fa-edit"></a>
+              <a href="{% url 'exercise-delete' x.id pk %}" class="fas fa-trash-alt"></a>
+          </td>
+      </tr>
+    {% endfor %}
+  </table>
+
+{% endblock %}

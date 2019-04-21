@@ -1,0 +1,20 @@
+<table>
+	<tr>
+		<th>Tipo</th>
+        <th>Alimento</th>
+		<th>Proteinas</th>
+		<th>Carbohidratos</th>
+		<th>Grasas</th>
+		<th>Acciones</th>
+	</tr>
+	<tr>
+		<td>{{ food.food_category }}</td>
+        <td>{{ food.name }}</td>
+		<td>{{ food.protein }} grs.</td>
+		<td>{{ food.carbohidrate }} grs.</td>
+		<td>{{ food.fat }} grs.</td>
+		<td><a href="{% url 'food-update' food.id %}" class="fas fa-edit"></a>
+            <a href="{% url 'food-delete' food.id %}" class="fas fa-trash-alt"></a>
+        </td>
+	</tr>
+</table>

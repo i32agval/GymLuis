@@ -1,0 +1,14 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+	
+	<center><h3>Nueva entrada</h3></center>
+	<form action="" method="post">
+	    {% csrf_token %}
+	    <table>
+	    	{{ form }}
+	    </table><br>
+	    <input type="submit" value="Guardar" />
+	</form>
+
+{% endblock %}

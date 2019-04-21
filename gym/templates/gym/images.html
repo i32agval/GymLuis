@@ -1,0 +1,50 @@
+{% extends "base_generic.html" %}
+{% load static %}
+
+{% block content %}
+
+	{% for message in messages %}
+		<div class="alert {{ message.tags }} alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			{{ message }}
+		</div>
+	{% endfor %}
+
+	<center><h3>Evolución {{ usuario }}</h3></center>
+	{% if not pk %}
+		<a href="{% url 'upload_image' %}" class="btn btn-success">Subir foto</a><br><br>
+	{% endif %}
+	<table>
+		<tr>
+			<th width="40%">Foto</th>
+			<th>Fecha</th>
+			<th>Peso</th>
+			<th>Medidas</th>
+			{% if actual %}
+				<th>Acciones</th>
+			{% endif %}
+		</tr>
+		{% for im in images %}
+			<tr>
+				<td><a target="_blank" href="{{ im.image.url }}"><img src="{{ im.image.url }}" class="img-responsive" width="90%"></a></td>
+				<td>{{ im.date }}</td>
+				<td>{{ im.weight }} kilos</td>
+				<td>Pecho: {{ im.chest }} cms<br>
+					Biceps: {{ im.biceps }} cms<br>
+					Cintura: {{ im.waist }} cms<br>
+					Cuadriceps: {{ im.quadricep }} cms<br>
+					IMC: {{ im.muscle_mass }}<br>
+					IGC: {{ im.muscle_fat }}</td>
+				{% if actual %}	
+					<td><a href="{% url 'image_edit' im.id %}" class="fas fa-edit"></a>
+					<a href="{% url 'image-delete' im.id %}" class="fas fa-trash-alt"></a></td>
+<!-- 					<td><a href="{% url 'image_edit' im.id %}" class="btn btn-info btn-sm"><i class="fa fa-edit" aria-hidden="true" style="color: white"></i>Editar</a>
+					<a href="{% url 'image-delete' im.id %}" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt" aria-hidden="true" style="color: white"></i>Borrar</a></td> -->
+                {% endif %}
+			</tr>
+	{% endfor %}
+	</table>
+
+{% endblock %}

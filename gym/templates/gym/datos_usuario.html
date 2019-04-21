@@ -1,0 +1,41 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    
+    <center><h3>Datos usuario</h3></center>
+    {% if user_data %}
+      <table>
+        <tr>
+          <th>Usuario</th>
+          <th>Nombre</th>
+          <th>Apellidos</th>
+          <th>Fecha de nacimiento</th>
+          <th>Ciudad</th>
+          <th>Peso</th>
+          <th>Acciones</th>
+        </tr>
+        <tr>
+          <td><a href="{% url 'images' 1 %}"><img src="{{ user_data.profile_picture.url }}" class="img-circle" style="width:80px;height:80px;"></a></td>
+          <td>{{ user_data.user.first_name }}</td>
+          <td>{{ user_data.user.last_name }}</td>
+          <td>{{ user_data.birthdate }}</td>
+          <td>{{ user_data.city }}</td>
+          {% if weight %}
+            <td>{{ weight }} kilos</td>
+          {% else %}
+            <td></td>
+          {% endif %}
+          <td><a href="{% url 'user_edit' %}" class="fas fa-edit"></a></td>
+  <!--    {% for peso in user_data.weight_data.all %}
+            <tr>
+              <td>{{ peso.date }}</td>
+              <td>{{ peso.weight }} Kilos</td>
+            </tr>
+          {% endfor %} -->
+        </tr>
+      </table>
+    {% else %}
+      <p>No hay datos de usuario registrados en el sistema.</p>
+    {% endif %}
+
+{% endblock %}

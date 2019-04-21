@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+	<div class="container-fluid bg-3">
+		<center><h3>Máquinas</h3></center>
+		<div class="row">
+			{% for machine in machines %}
+				<div class="col-xs-6 col-sm-6 col-md-4 col-lg-3">
+					<a href="{% url 'machine-detail' machine.pk %}">
+					<img src="{{ machine.image.url }}" class="img-responsive"></a>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+
+{% endblock %}

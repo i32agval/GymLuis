@@ -1,0 +1,40 @@
+{% extends "base_generic.html" %}
+{% block content %}
+
+	{% for message in messages %}
+		<div class="alert {{ message.tags }} alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			{{ message }}
+		</div>
+	{% endfor %}
+	<center><h3>Solicitudes de amistad</h3></center><br>
+	<table>
+		<tr>
+			<th width="30%">Usuario</th>
+			<th>Nombre</th>
+			<th>Apellidos</th>
+			<th>Ciudad</th>
+			<th>Acciones</th>
+		</tr>
+		{% for user in filter.qs %}
+		<tr>
+			<td><a href="{% url 'images' user.id %}"><img src="{{ user.profile_picture.url }}" class="img-circle" style="width:80px;height:80px;"></a></td>
+			<td>{{ user.user.first_name }}</td>
+			<td>{{ user.user.last_name }}</td>
+			<td>{{ user.city }}</td>
+			<td>{% if friends %}
+					<a href="{% url 'images' user.id %}" class="fas fa-search"></a>
+					<a href="{% url 'delete_relationship' user.id %}" class="fas fa-user-slash"></a></td></td>
+				{% else %}
+					{% if requests %}
+						<a href="{% url 'add_friend' user.id 0 %}" class="fas fa-user-plus"></a>
+						<a href="{% url 'delete-confirm' user.id 2 %}" class="fas fa-user-slash"></a></td></td>
+					{% endif %}
+				{% endif %}
+		</tr>
+		{% endfor %}
+	</table>
+
+{% endblock %}

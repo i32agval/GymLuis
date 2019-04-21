@@ -1,0 +1,13 @@
+{% extends "base_generic.html" %}
+{% load static %}
+
+{% block content %}
+<center><h3>Actualizar información</h3></center>
+<form method="post" enctype="multipart/form-data">
+	{% csrf_token %}
+	<table>
+    	{{ form }}
+	</table><br>
+	<input type="submit" value="Actualizar">
+</form>
+{% endblock %}

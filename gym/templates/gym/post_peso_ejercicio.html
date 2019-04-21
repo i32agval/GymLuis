@@ -1,0 +1,14 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+	<center><h3>Añadir peso</h3></center>
+    <form action="" method="post">
+        {% csrf_token %}
+        <table>
+        	{{ form }}
+        </table><br>
+        <input type="submit" value="Añadir" />
+    </form>
+
+{% endblock %}

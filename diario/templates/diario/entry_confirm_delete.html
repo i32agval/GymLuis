@@ -1,0 +1,14 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+	<center><h3>Eliminar entrada</h3></center>
+    <a href="{% url 'entry_list' %}">Volver a la lista</a>
+    <hr>
+    <form method="post">
+    	{% csrf_token %}
+    	<b>¿Estás seguro que quieres borrar la entrada con el siguiente texto?:</b> <br><br> {{ entry.text }}<br>
+    	<br><button class="btn btn-danger">Borrar</button>
+    </form>
+
+{% endblock %}

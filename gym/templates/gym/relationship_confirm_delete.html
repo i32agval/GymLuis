@@ -1,0 +1,18 @@
+{% extends "base_generic.html" %}
+{% load static %}
+
+{% block content %}
+<br>
+    {% if delete_friend == '0' %}
+		<a href="{% url 'view_friends' %}">Volver a la lista</a>
+    {% endif %}
+	{% if delete_friend == '1' %} 
+    	<a href="{% url 'users_search' %}">Volver a la lista</a>
+    {% endif %}
+    {% if delete_friend == '2' %}
+		<a href="{% url 'requests' %}">Volver a la lista</a>
+    {% endif %}
+    <hr>
+    <p style="text-align:justify"><b>¿Estas seguro que quieres borrar el contacto? No veréis vuestras fotos de progreso hasta que ambos aceptéis una petición de amistad</b> <br><br></p>
+    <br><a href="{% url 'delete' pk delete_friend %}"><button class="btn btn-danger">Borrar</button>
+{% endblock %}

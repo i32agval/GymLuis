@@ -1,0 +1,37 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+    
+    <div class="container-fluid bg-3 text-center">
+        <center><h3>El tiempo en {{ city }}</h3>
+            <img src="{{ url_icon }}" height="100" width="100" >
+            <h2>{{ temp }}</h2>
+            <h3>{{ weather }}</h3>
+        </center>
+    </div>
+    <br>
+
+    <table>
+        <tr>
+            {% for element in weather_date %}
+                <th><center>{{ element }}</center></th>
+            {% endfor %}
+        </tr>
+        <tr>
+            {% for element in weather_icon %}
+                <td><center><img src="{{ element }}" ></center></td>
+            {% endfor %}
+        </tr>
+        <tr>
+            {% for element in weather_temperature %}
+                <td><center>{{ element }}</center></td>
+            {% endfor %}
+        </tr>
+        <tr>
+            {% for element in weather_description %}
+                <td><center>{{ element }}</center></td>
+            {% endfor %}
+        </tr>
+    </table>
+
+{% endblock %}

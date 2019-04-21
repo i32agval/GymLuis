@@ -1,0 +1,81 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+
+  {% for message in messages %}
+    <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      {{ message }}
+    </div>
+  {% endfor %}
+
+  <center><h3>Lista de alimentos</h3></center>
+  
+  <form method="post" id="typeFoodForm" data-typeFoods-url="{% url 'ajax-load-foods' %}" novalidate>
+    {% csrf_token %}
+    <table>
+      <label for="food_category">Tipo: </label>{{ form.food_category }}
+      <label for="food">Alimento: </label><select id="id_food" name="food"></select><br><br>
+    </table>
+  </form>
+   
+  <form method="post" id="foodsForm" data-foodss-url="{% url 'ajax-load-nutrients' %}" novalidate>
+    {% csrf_token %}
+    <table id="protein_value">
+      <tr>
+        <th>Tipo</th>
+        <th>Alimento</th>
+        <th>Proteinas</th>
+        <th>Carbohidratos</th>
+        <th>Grasas</th>
+        <th>Acciones</th>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+  </form>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script>
+    $("#id_food_category").change(function () {
+      var url = $("#typeFoodForm").attr("data-typeFoods-url");
+      var foodCategoryId = $(this).val();
+
+      $.ajax({
+        url: url,
+        data: {
+          'food_category': foodCategoryId
+        },
+        success: function (data) {
+          $("#id_food").html(data);
+        }
+      });
+
+    });
+
+    $("#id_food").change(function () {
+      var url = $("#foodsForm").attr("data-foodss-url");
+      var foodId = $(this).val();
+
+      $.ajax({
+        url: url,
+        data: {
+          'food': foodId
+        },
+        success: function (data) {
+          $("#protein_value").html(data);
+        }
+      });
+
+    });
+  </script>
+
+{% endblock %}

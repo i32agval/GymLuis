@@ -1,0 +1,40 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  
+  {% for message in messages %}
+    <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      {{ message }}
+    </div>
+  {% endfor %}
+  
+  <center><h3>Diario</h3></center>
+  <a href="{% url 'post_entry' %}" class="btn btn-success">Nueva entrada</a><br><br>
+  {% if entries %}
+    <br><br>
+    <table>
+      <tr>
+        <th>Titulo</th>
+        <th>Texto</th>
+        <th>Fecha</th>
+        <th>Acciones</th>
+      </tr>
+      {% for entry in entries %}
+        <tr>
+          <td>{{ entry.title }}</td>
+          <td>{{ entry.text }}</td>
+          <td>{{ entry.created_date }}</td>
+          <td><a href="{% url 'entry_edit' entry.id %}" class="fas fa-edit"></a>
+              <a href="{% url 'entry_delete' entry.id %}" class="fas fa-trash-alt"></a>
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p>No hay entradas en el diario</p>
+  {% endif %}
+
+{% endblock %}

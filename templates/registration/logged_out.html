@@ -1,0 +1,18 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+{% for message in messages %}
+	<div class="alert {{ message.tags }} alert-dismissible" role="alert">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		{{ message }}
+	</div>
+{% endfor %}
+
+<p>Sesion cerrada</p>  
+
+<a href="{% url 'login'%}">Haga click aqui para loguearse de nuevo</a>
+
+{% endblock %}

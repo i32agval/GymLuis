@@ -1,0 +1,66 @@
+{% extends "base_generic.html" %}
+{% load static %}
+
+{% block content %}
+
+{% if requests %}
+  {% for message in messages %}
+    <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+      <a href="{% url 'requests' %}" class="alert-link">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      {{ message }}</a>
+    </div>
+  {% endfor %}
+{% endif %}
+
+<div class="container-fluid text-center">
+  <div class="row">  
+    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3">
+      <p>Máquinas</p>
+      <center><a href="{% url 'machines' %}"><img src="{% static 'pecho.jpg' %}" style="width:50%" alt="Image"></a></center><br>
+    </div>
+    {% if user.is_staff %}
+    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3">
+      <p>Usuarios registrados</p>
+      <center><a href="{% url 'users_list' %}"><img src="{% static 'datos.jpg' %}" style="width:70%" alt="Image"></a></center><br>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3"> 
+      <p>Obtener informes</p>
+      <center><a href="{% url 'users_report_pdf' %}"><img src="{% static 'pdf-icono.png' %}" style="width:70%" alt="Image"></a></center><br>
+    </div>
+    {% else %}
+    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3">
+      <p>Datos usuario</p>
+      <center><a href="{% url 'user_data' %}"><img src="{% static 'datos_usuario.jpeg' %}" style="width:50%" alt="Image"></a></center><br>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3">
+      <p>Diario</p>
+      <center><a href="{% url 'entry_list' %}"><img src="{% static 'diario.png' %}" style="width:50%" alt="Image"></a></center><br>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3">
+      <p>Nutrición</p>
+      <center><a href="{% url 'nutrition' %}"><img src="{% static 'nutrition.png' %}" style="width:55%" alt="Image"></a></center><br>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3">
+      <p>Tiempo</p>
+      <center><a href="{% url 'weather' %}"><img src="{% static 'weather.png' %}" style="width:60%" alt="Image"></a></center><br>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3"> 
+      <p>Progreso</p>
+      <center><a href="{% url 'progress' %}"><img src="{% static 'progreso2.png' %}" style="width:60%" alt="Image"></a></center><br>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3"> 
+      <p>Mis fotos</p>
+      <center><a href="{% url 'images' %}"><img src="{% static 'camera.png' %}" style="width:60%" alt="Image"></a></center><br>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3">
+      <p>Red Social</p>
+      <center><a href="{% url 'social' %}"><img src="{% static 'red_social.png' %}" style="width:60%" alt="Image"></a></center><br>
+    </div>
+  </div>
+  {% endif %}
+</div>
+
+{% endblock %}

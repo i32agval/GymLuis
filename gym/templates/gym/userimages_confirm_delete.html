@@ -1,0 +1,13 @@
+{% extends "base_generic.html" %}
+{% load static %}
+
+{% block content %}
+<center><h3>Eliminar información</h3></center>
+<a href="{% url 'images' %}">Volver a la lista</a>
+<hr>
+	<form method="post">
+		{% csrf_token %}
+		<b>¿Estas seguro que quieres eliminar la entrada?:</b> <br><br>
+		<br><button class="btn btn-danger">Eliminar</button>
+	</form>
+{% endblock %}

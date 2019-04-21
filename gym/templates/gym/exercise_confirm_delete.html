@@ -1,0 +1,14 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+    <center><h3>Eliminar ejercicio</h3></center>
+    <a href="{% url 'machine-detail' machine.id %}">Volver a la lista</a>
+    <hr>
+    <form method="post">
+    	{% csrf_token %}
+    	<b>¿Estás seguro que quieres eliminar el ejercicio seleccionado?</b><br>
+    	<br><button class="btn btn-danger">Eliminar</button>
+    </form>
+
+{% endblock %}
