@@ -38,10 +38,12 @@ Nutrition
 You can obtain information from the Fatsecret API. You can visualize the recipes in the API, searching by category and name of recipe.
 The platform allows you to create your own food database.
 Create, edit and delete a food.
+Use of Javascript to show the recipe/food when you select a category in the select field.
+Use of Javascript to show automaticaly the recipe or the food information when you select a recipe/food y the select field. 
 
 Weather
 =======
-You can obtain information from the Weathermap API. You can visualize the weather of today and the weather of the next 5 days.
+You can obtain information from the Weathermap API. You can visualize the weather of today and the weather of the next 5 days, showing the date, description and a image of the weather.
 
 Progress
 ========
