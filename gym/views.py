@@ -7,24 +7,24 @@ from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.messages.views import SuccessMessageMixin
-from django.core.files import File
-from django.http import HttpResponse, HttpResponseRedirect
+# from django.core.files import File
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import generic
 from django.views.generic import View
 
-from io import BytesIO
+# from io import BytesIO
 # from matplotlib.backends.backend_agg import FigureCanvasAgg
-from PIL import ExifTags
-from PIL import Image as Img
+# from PIL import ExifTags
+# from PIL import Image as Img
 
 # from reportlab.lib import colors
 # from reportlab.lib.units import cm
 # from reportlab.pdfgen import canvas
 # from reportlab.platypus import Table, TableStyle
 
-import io
+# import io
 # import matplotlib.pyplot as plt
 
 
@@ -385,27 +385,27 @@ def upload_image(request):
         form = UploadImageForm(request.POST, request.FILES)
         if form.is_valid():
             profile = form.save(commit=False)
-            if mobile(request):
-                imagen = form.cleaned_data.get('image')
-                pilImage = Img.open(BytesIO(imagen.read()))
-                for orientation in ExifTags.TAGS.keys():
-                    if ExifTags.TAGS[orientation] == 'Orientation':
-                        break
-                try:
-                    exif = dict(pilImage._getexif().items())
-                    if exif[orientation] == 3:
-                        pilImage = pilImage.rotate(180, expand=True)
-                    elif exif[orientation] == 6:
-                        pilImage = pilImage.rotate(270, expand=True)
-                    elif exif[orientation] == 8:
-                        pilImage = pilImage.rotate(90, expand=True)
-                    output = BytesIO()
-                    pilImage.save(output, format='JPEG', quality=75)
-                    output.seek(0)
-                    imagen = File(output, imagen.name)
-                    profile.image = imagen
-                except KeyError:
-                    pass
+            # if mobile(request):
+            #     imagen = form.cleaned_data.get('image')
+            #     pilImage = Img.open(BytesIO(imagen.read()))
+            #     for orientation in ExifTags.TAGS.keys():
+            #         if ExifTags.TAGS[orientation] == 'Orientation':
+            #             break
+            #     try:
+            #         exif = dict(pilImage._getexif().items())
+            #         if exif[orientation] == 3:
+            #             pilImage = pilImage.rotate(180, expand=True)
+            #         elif exif[orientation] == 6:
+            #             pilImage = pilImage.rotate(270, expand=True)
+            #         elif exif[orientation] == 8:
+            #             pilImage = pilImage.rotate(90, expand=True)
+            #         output = BytesIO()
+            #         pilImage.save(output, format='JPEG', quality=75)
+            #         output.seek(0)
+            #         imagen = File(output, imagen.name)
+            #         profile.image = imagen
+            #     except KeyError:
+            #         pass
             profile.user = UserProfile.objects.get(user=request.user)
             try:
                 profile.save()
