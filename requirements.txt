@@ -13,4 +13,10 @@ django-filter==2.1.0
 #django-columns
 django-columns==0.1.0
 
+#fatsecret
+fatsecret==0.2.3
+
+#pillow
+Pillow==5.4.1
+
 
