@@ -200,7 +200,7 @@ RELATIONSHIP_BLOCKED = 2
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'static', 'media')
 
 STATIC_URL = '/static/'
-STATIC_ROOT = 'assets'
+STATIC_ROOT = os.path.join(BASE_DIR, "assets")
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 MEDIA_URL = '/media/'

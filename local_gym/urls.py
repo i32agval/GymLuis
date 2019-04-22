@@ -29,6 +29,6 @@ urlpatterns = [
     path('api/v1/', include('api.urls')),
     path('weather/', include('weather.urls')),
     path('', RedirectView.as_view(url='/gym/', permanent=True)),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS)
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
