@@ -10,4 +10,7 @@ django-restframework-apiview==1.3.4
 # django-filter
 django-filter==2.1.0
 
+#django-columns
+django-columns==0.1.0
+
 
