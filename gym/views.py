@@ -15,17 +15,17 @@ from django.views import generic
 from django.views.generic import View
 
 from io import BytesIO
-from matplotlib.backends.backend_agg import FigureCanvasAgg
+# from matplotlib.backends.backend_agg import FigureCanvasAgg
 from PIL import ExifTags
 from PIL import Image as Img
 
-from reportlab.lib import colors
-from reportlab.lib.units import cm
-from reportlab.pdfgen import canvas
-from reportlab.platypus import Table, TableStyle
+# from reportlab.lib import colors
+# from reportlab.lib.units import cm
+# from reportlab.pdfgen import canvas
+# from reportlab.platypus import Table, TableStyle
 
 import io
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
 
 # Create your views here.
@@ -197,54 +197,55 @@ def signup(request):
 
 
 class UsersReportPDF(View):
-    """
-    Class to create pdf with the list of users
-    """
+    pass
+    # """
+    # Class to create pdf with the list of users
+    # """
 
-    def get(self, request, *args, **kwargs):
-        response = HttpResponse(content_type='application/pdf')
-        buffer = BytesIO()
-        pdf = canvas.Canvas(buffer)
-        self.header(pdf)
-        y = 600
-        self.users_table(pdf, y)
-        pdf.save()
-        pdf = buffer.getvalue()
-        buffer.close()
-        response.write(pdf)
-        return response
+    # def get(self, request, *args, **kwargs):
+    #     response = HttpResponse(content_type='application/pdf')
+    #     buffer = BytesIO()
+    #     pdf = canvas.Canvas(buffer)
+    #     self.header(pdf)
+    #     y = 600
+    #     self.users_table(pdf, y)
+    #     pdf.save()
+    #     pdf = buffer.getvalue()
+    #     buffer.close()
+    #     response.write(pdf)
+    #     return response
 
-    def header(self, pdf):
-        """
-        Header of the PDF
-        """
-        # logo =  'static/logo-gym.png'
-        # pdf.drawImage(logo, 40, 700, 100, 100)
-        pdf.setFont("Helvetica", 16)
-        pdf.drawString(250, 750, u"Lista de usuarios")
+    # def header(self, pdf):
+    #     """
+    #     Header of the PDF
+    #     """
+    #     # logo =  'static/logo-gym.png'
+    #     # pdf.drawImage(logo, 40, 700, 100, 100)
+    #     pdf.setFont("Helvetica", 16)
+    #     pdf.drawString(250, 750, u"Lista de usuarios")
 
-    def users_table(self, pdf, y):
-        """
-        Table for the user list
-        """
-        titles = ('Nombre', 'Apellidos', 'Fecha de nacimiento')
-        items = [(
-            person.user.first_name,
-            person.user.last_name,
-            person.birthdate) for person in
-            UserProfile.objects.all() if not
-            person.user.is_staff]
-        all_items = Table([titles] + items, colWidths=[5 * cm])
-        all_items.setStyle(
-            TableStyle([
-                ('ALIGN', (0, 0), (2, 0), 'CENTER'),
-                ('GRID', (0, 0), (-1, -1), 1, colors.black),
-                ('FONTSIZE', (0, 0), (2, 0), 10),
-                ('BACKGROUND', (0, 0), (2, 0), colors.grey),
-            ]
-            ))
-        all_items.wrapOn(pdf, 800, 600)
-        all_items.drawOn(pdf, 60, y)
+    # def users_table(self, pdf, y):
+    #     """
+    #     Table for the user list
+    #     """
+    #     titles = ('Nombre', 'Apellidos', 'Fecha de nacimiento')
+    #     items = [(
+    #         person.user.first_name,
+    #         person.user.last_name,
+    #         person.birthdate) for person in
+    #         UserProfile.objects.all() if not
+    #         person.user.is_staff]
+    #     all_items = Table([titles] + items, colWidths=[5 * cm])
+    #     all_items.setStyle(
+    #         TableStyle([
+    #             ('ALIGN', (0, 0), (2, 0), 'CENTER'),
+    #             ('GRID', (0, 0), (-1, -1), 1, colors.black),
+    #             ('FONTSIZE', (0, 0), (2, 0), 10),
+    #             ('BACKGROUND', (0, 0), (2, 0), colors.grey),
+    #         ]
+    #         ))
+    #     all_items.wrapOn(pdf, 800, 600)
+    #     all_items.drawOn(pdf, 60, y)
 
 
 class ExerciseUpdate(SuccessMessageMixin, generic.UpdateView):
@@ -317,41 +318,42 @@ def edit_userprofile(request):
 
 
 def plot(request, pk):
-    """
-    Set each graph to be shown in the progress view
-    """
-    if pk == '0':
-        images = UserImages.objects.filter(
-            user__pk=request.user.userprofile.pk)
-        x, y = [], []
-        for weight in images:
-            y.append(int(weight.weight))
-            x.append(weight.date.day)
-    else:
-        weights = Exercise.objects.filter(machine_id=pk).order_by('date')
-        x, y = [], []
-        for weight in weights:
-            y.append(int(weight.weight))
-            x.append(weight.date.day)
+    pass
+    # """
+    # Set each graph to be shown in the progress view
+    # """
+    # if pk == '0':
+    #     images = UserImages.objects.filter(
+    #         user__pk=request.user.userprofile.pk)
+    #     x, y = [], []
+    #     for weight in images:
+    #         y.append(int(weight.weight))
+    #         x.append(weight.date.day)
+    # else:
+    #     weights = Exercise.objects.filter(machine_id=pk).order_by('date')
+    #     x, y = [], []
+    #     for weight in weights:
+    #         y.append(int(weight.weight))
+    #         x.append(weight.date.day)
 
-    f = plt.figure()
+    # f = plt.figure()
 
-    axes = f.add_axes([0.15, 0.15, 0.75, 0.75])
-    axes.plot(x, y)
-    axes.set_xlabel("Fecha")
-    axes.set_ylabel("Peso")
+    # axes = f.add_axes([0.15, 0.15, 0.75, 0.75])
+    # axes.plot(x, y)
+    # axes.set_xlabel("Fecha")
+    # axes.set_ylabel("Peso")
 
-    buf = io.BytesIO()
-    canvas = FigureCanvasAgg(f)
-    canvas.print_png(buf)
+    # buf = io.BytesIO()
+    # canvas = FigureCanvasAgg(f)
+    # canvas.print_png(buf)
 
-    response = HttpResponse(buf.getvalue(), content_type='image/png')
+    # response = HttpResponse(buf.getvalue(), content_type='image/png')
 
-    f.clear()
+    # f.clear()
 
-    response['Content-Length'] = str(len(response.content))
+    # response['Content-Length'] = str(len(response.content))
 
-    return response
+    # return response
 
 
 def progress(request):
