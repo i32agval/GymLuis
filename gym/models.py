@@ -23,7 +23,7 @@ class UserProfile(models.Model):
         blank=True, null=True)
     followers = models.ManyToManyField(
         to='self', through='Relationship', related_name='related_to',
-        symmetrical=False, blank=True, null=True)
+        symmetrical=False, blank=True)
 
     def __str__(self):
         return '%s %s' % (self.user.first_name, self.user.last_name)
@@ -62,8 +62,8 @@ class WeightData(models.Model):
     """
     user = models.ForeignKey(
         'UserProfile', on_delete=models.CASCADE, related_name='weight_data')
-    date = models.DateField(default=timezone.now())
-    weight = models.IntegerField(max_length=10)
+    date = models.DateField(default=timezone.now)
+    weight = models.IntegerField()
 
     def __str__(self):
         return '%s' % self.user
@@ -74,15 +74,15 @@ class UserImages(models.Model):
         'UserProfile', on_delete=models.CASCADE,
         related_name='user_images', blank=True, null=True)
     image = models.ImageField(upload_to='media/images/')
-    date = models.DateField(default=timezone.now())
-    weight = models.IntegerField(max_length=10)
-    chest = models.IntegerField(max_length=10)
-    biceps = models.IntegerField(max_length=10)
-    waist = models.IntegerField(max_length=10)
-    quadricep = models.IntegerField(max_length=10)
-    gastrocnemius = models.IntegerField(max_length=10)
-    muscle_mass = models.IntegerField(max_length=10)
-    muscle_fat = models.IntegerField(max_length=10)
+    date = models.DateField(default=timezone.now)
+    weight = models.IntegerField()
+    chest = models.IntegerField()
+    biceps = models.IntegerField()
+    waist = models.IntegerField()
+    quadricep = models.IntegerField()
+    gastrocnemius = models.IntegerField()
+    muscle_mass = models.IntegerField()
+    muscle_fat = models.IntegerField()
 
     def __unicode__(self,):
         return str(self.image)
@@ -119,8 +119,8 @@ class Exercise(models.Model):
         'UserProfile', on_delete=models.CASCADE, blank=True, null=True)
     name = models.CharField(max_length=30)
     machine = models.ForeignKey(Machine, on_delete=models.CASCADE)
-    weight = models.IntegerField(max_length=10)
-    date = models.DateField(default=timezone.now())
+    weight = models.IntegerField()
+    date = models.DateField(default=timezone.now)
 
     def __str__(self):
         return self.name
