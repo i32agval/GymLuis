@@ -1,0 +1,32 @@
+* {
+  box-sizing: border-box;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+  background-color: #5DBCD2;
+  color: white;
+}
+
+.icon-bar {
+background-color: #5E5D5D;
+}
+
+.img-circle {
+    border-radius: 50%;
+}
+
+.columnas{
+  column-count:2;
+}
