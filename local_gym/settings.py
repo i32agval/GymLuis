@@ -77,6 +77,11 @@ TEMPLATES = [
     },
 ]
 
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    #'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+)
+
 WSGI_APPLICATION = 'local_gym.wsgi.application'
 
 
@@ -200,8 +205,13 @@ RELATIONSHIP_BLOCKED = 2
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'static', 'media')
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, "assets")
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static')
+
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static', 'media')
