@@ -27,7 +27,12 @@
 		</tr>
 		{% for user in filter.qs %}
 		<tr>
-			<td><a href="{% url 'images' user.id %}"><img src="{{ user.profile_picture.url }}" class="img-circle" style="width:80px;height:80px;"></a></td>
+			<td>
+				{% if user_friends %}
+					<a href="{% url 'images' user.id %}"><img src="{{ user.profile_picture.url }}" class="img-circle" style="width:80px;height:80px;"></a></td>
+				{% else %}
+					<img src="{{ user.profile_picture.url }}" class="img-circle" style="width:80px;height:80px;"></td>
+				{% endif %}
 			<td>{{ user.user.first_name }}</td>
 			<td>{{ user.user.last_name }}</td>
 			<td>{{ user.city }}</td>
