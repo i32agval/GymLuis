@@ -14,8 +14,8 @@ from django.urls import reverse
 from django.views import generic
 from django.views.generic import View
 
-# from io import BytesIO
-# from matplotlib.backends.backend_agg import FigureCanvasAgg
+from io import BytesIO
+from matplotlib.backends.backend_agg import FigureCanvasAgg
 # from PIL import ExifTags
 # from PIL import Image as Img
 
@@ -24,8 +24,8 @@ from django.views.generic import View
 # from reportlab.pdfgen import canvas
 # from reportlab.platypus import Table, TableStyle
 
-# import io
-# import matplotlib.pyplot as plt
+import io
+import matplotlib.pyplot as plt
 
 
 # Create your views here.
@@ -319,41 +319,41 @@ def edit_userprofile(request):
 
 def plot(request, pk):
     pass
-    # """
-    # Set each graph to be shown in the progress view
-    # """
-    # if pk == '0':
-    #     images = UserImages.objects.filter(
-    #         user__pk=request.user.userprofile.pk)
-    #     x, y = [], []
-    #     for weight in images:
-    #         y.append(int(weight.weight))
-    #         x.append(weight.date.day)
-    # else:
-    #     weights = Exercise.objects.filter(machine_id=pk).order_by('date')
-    #     x, y = [], []
-    #     for weight in weights:
-    #         y.append(int(weight.weight))
-    #         x.append(weight.date.day)
+    """
+    Set each graph to be shown in the progress view
+    """
+    if pk == '0':
+        images = UserImages.objects.filter(
+            user__pk=request.user.userprofile.pk)
+        x, y = [], []
+        for weight in images:
+            y.append(int(weight.weight))
+            x.append(weight.date.day)
+    else:
+        weights = Exercise.objects.filter(machine_id=pk).order_by('date')
+        x, y = [], []
+        for weight in weights:
+            y.append(int(weight.weight))
+            x.append(weight.date.day)
 
-    # f = plt.figure()
+    f = plt.figure()
 
-    # axes = f.add_axes([0.15, 0.15, 0.75, 0.75])
-    # axes.plot(x, y)
-    # axes.set_xlabel("Fecha")
-    # axes.set_ylabel("Peso")
+    axes = f.add_axes([0.15, 0.15, 0.75, 0.75])
+    axes.plot(x, y)
+    axes.set_xlabel("Fecha")
+    axes.set_ylabel("Peso")
 
-    # buf = io.BytesIO()
-    # canvas = FigureCanvasAgg(f)
-    # canvas.print_png(buf)
+    buf = io.BytesIO()
+    canvas = FigureCanvasAgg(f)
+    canvas.print_png(buf)
 
-    # response = HttpResponse(buf.getvalue(), content_type='image/png')
+    response = HttpResponse(buf.getvalue(), content_type='image/png')
 
-    # f.clear()
+    f.clear()
 
-    # response['Content-Length'] = str(len(response.content))
+    response['Content-Length'] = str(len(response.content))
 
-    # return response
+    return response
 
 
 def progress(request):
