@@ -8,7 +8,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.messages.views import SuccessMessageMixin
 # from django.core.files import File
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import generic
@@ -318,7 +318,6 @@ def edit_userprofile(request):
 
 
 def plot(request, pk):
-    pass
     """
     Set each graph to be shown in the progress view
     """
