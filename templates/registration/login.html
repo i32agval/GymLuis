@@ -10,10 +10,11 @@
     {% if user.is_authenticated %}
     <p>Su cuenta no tiene acceso a esta página. Para proceder, introduzca
     una cuenta que sí lo tenga.</p>
-    {% else %}
-    <p>Introduzca su nombre de usuario y contraseña.</p>
     {% endif %}
 {% endif %}
+
+
+<p>Introduzca su nombre de usuario y contraseña.</p>
 
 <form method="post" action="{% url 'login' %}">
 {% csrf_token %}
@@ -35,5 +36,7 @@
 
 {# Assumes you setup the password_reset view in your URLconf #}
 <p><a href="{% url 'password_reset' %}">Recordar contraseña</a></p>
+<p>Si todavía no tienes cuenta:
+  <a href="{% url 'signup' %}?" class="enlacenav">Regístrate</a></p>
 
 {% endblock %}

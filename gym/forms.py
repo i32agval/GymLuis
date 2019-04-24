@@ -43,6 +43,9 @@ class SignUpForm(UserCreationForm):
         self.cities = kwargs.pop('cities', None)
         super(SignUpForm, self).__init__(*args, **kwargs)
         self.fields['city'].choices = self.cities
+        self.fields['profile_picture'].required = False
+        self.fields['profile_picture'].initial = '/media/images/logo-gym.png'
+        self.fields['birthdate'].input_formats = ['%d/%m/%Y']
 
 
 class UploadImageForm(forms.ModelForm):

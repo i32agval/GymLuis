@@ -329,16 +329,18 @@ def plot(request, pk):
             y.append(int(weight.weight))
             x.append(weight.date.day)
     else:
-        weights = Exercise.objects.filter(machine_id=pk).order_by('date')
+        weights = Exercise.objects.filter(
+            user__pk=request.user.userprofile.pk,
+            machine_id=pk).order_by('date')
         x, y = [], []
         for weight in weights:
             y.append(int(weight.weight))
-            x.append(weight.date.day)
+            x.append(weight.date.month)
 
     f = plt.figure()
 
     axes = f.add_axes([0.15, 0.15, 0.75, 0.75])
-    axes.plot(x, y)
+    axes.plot(x, y, 'o-')
     axes.set_xlabel("Fecha")
     axes.set_ylabel("Peso")
 
