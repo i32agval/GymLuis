@@ -4,35 +4,41 @@
     
     <center><h3>Datos usuario</h3></center>
     {% if user_data %}
-      <table>
+      <table width="5%">
         <tr>
-          <th>Usuario</th>
-          <th>Nombre</th>
-          <th>Apellidos</th>
-          <th>Fecha de nacimiento</th>
-          <th>Ciudad</th>
-          <th>Peso</th>
-          <th>Acciones</th>
+          <th width="20%">Usuario</th><td><a href="{% url 'images' 1 %}"><img src="{{ user_data.profile_picture.url }}" class="img-circle" style="width:80px;height:80px;"></a></td>
         </tr>
         <tr>
-          <td><a href="{% url 'images' 1 %}"><img src="{{ user_data.profile_picture.url }}" class="img-circle" style="width:80px;height:80px;"></a></td>
-          <td>{{ user_data.user.first_name }}</td>
-          <td>{{ user_data.user.last_name }}</td>
-          <td>{{ user_data.birthdate }}</td>
-          <td>{{ user_data.city }}</td>
-          {% if weight %}
+          <th width="20%">Nombre</th><td>{{ user_data.user.first_name }}</td>
+        </tr>  
+        <tr>  
+          <th width="20%">Apellidos</th><td>{{ user_data.user.last_name }}</td>
+        </tr>
+        <tr>  
+          <th width="20%">Email</th><td>{{ user_data.user.email }}</td>
+        </tr>
+        <tr>  
+          <th width="20%">Fecha de nacimiento</th><td>{{ user_data.birthdate }}</td>
+        </tr>
+        <tr>  
+          <th width="20%">Ciudad</th><td>{{ user_data.city }}</td>
+        </tr>
+        <tr>  
+          <th width="20%">Peso</th>{% if weight %}
             <td>{{ weight }} kilos</td>
           {% else %}
             <td></td>
           {% endif %}
-          <td><a href="{% url 'user_edit' %}" class="fas fa-edit"></a></td>
+        </tr>
+        <tr>  
+          <th>Acciones</th><td><a href="{% url 'user_edit' %}" class="fas fa-edit"></a></td>
+        </tr>
   <!--    {% for peso in user_data.weight_data.all %}
             <tr>
               <td>{{ peso.date }}</td>
               <td>{{ peso.weight }} Kilos</td>
             </tr>
           {% endfor %} -->
-        </tr>
       </table>
     {% else %}
       <p>No hay datos de usuario registrados en el sistema.</p>

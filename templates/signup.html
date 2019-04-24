@@ -9,28 +9,31 @@
         {% csrf_token %}
         <table>
         	<tr>
-        		<th><label for="id_username">Usuario:</label></th><td>{{ form.username }}</td>
+        		<th>Usuario:</th><td>{{ form.username }}</td>
         	</tr>
         	<tr>
-        		<th><label for="id_username">Nombre:</label></th><td>{{ form.first_name }}</td>
+        		<th>Email:</th><td>{{ form.email }}</td>
+        	</tr>
+        	<tr>
+        		<th>Nombre:</th><td>{{ form.first_name }}</td>
         	</tr>
         	<tr>	
-        		<th><label for="id_username">Apellidos:</label></th><td>{{ form.last_name }}</td>
+        		<th>Apellidos:</th><td>{{ form.last_name }}</td>
         	</tr>	
 			<tr>
-        		<th><label for="id_username">Fecha de nacimiento:</label></th><td>{{ form.birthdate }}<br> dd/mm/yyyy</td>
+        		<th>Fecha de nacimiento:</th><td>{{ form.birthdate }}<br> mm-dd-yyyy</td>
         	</tr>
         	<tr>
-        		<th><label for="id_username">Ciudad:</label></th><td>{{ form.city }}</td>
+        		<th>Ciudad:</th><td>{{ form.city }}</td>
         	</tr>
         	<tr>
-        		<th><label for="id_username">Foto de perfil:</label></th><td>{{ form.profile_picture }}</td>
+        		<th>Foto de perfil:</th><td>{{ form.profile_picture }}</td>
         	</tr>
         	<tr>	
-        		<th><label for="id_username">Contraseña:</label></th><td>{{ form.password1 }}</td>
+        		<th>Contraseña:</th><td>{{ form.password1 }}</td>
         	</tr>
         	<tr>	
-        		<th><label for="id_username">Confirmar contraseña:</label></th><td>{{ form.password2 }}</td>
+        		<th>Confirmar contraseña:</th><td>{{ form.password2 }}</td>
         	</tr>
         </table><br>
         <input type="submit" value="Registrarse" />

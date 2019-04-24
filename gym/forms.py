@@ -29,6 +29,7 @@ class SignUpForm(UserCreationForm):
     """
     first_name = forms.TextInput()
     last_name = forms.TextInput()
+    email = forms.EmailField()
     birthdate = forms.DateField()
     city = forms.ChoiceField()
     profile_picture = forms.ImageField()
@@ -36,7 +37,7 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = (
-            'username', 'first_name', 'last_name',
+            'username', 'email', 'first_name', 'last_name',
             'birthdate', 'city', 'profile_picture', 'password1', 'password2', )
 
     def __init__(self, *args, **kwargs):
@@ -45,7 +46,7 @@ class SignUpForm(UserCreationForm):
         self.fields['city'].choices = self.cities
         self.fields['profile_picture'].required = False
         self.fields['profile_picture'].initial = '/media/images/logo-gym.png'
-        self.fields['birthdate'].input_formats = ['%d/%m/%Y']
+        self.fields['birthdate'].input_formats = ['%m-%d-%Y']
 
 
 class UploadImageForm(forms.ModelForm):
@@ -65,3 +66,4 @@ class UploadImageForm(forms.ModelForm):
         super(UploadImageForm, self).__init__(*args, **kwargs)
         self.fields['user'].disabled = True
         self.initial['user'] = self.inst
+        self.fields['date'].input_formats = ['%m-%d-%Y']

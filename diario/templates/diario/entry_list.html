@@ -15,24 +15,26 @@
   <a href="{% url 'post_entry' %}" class="btn btn-success">Nueva entrada</a><br><br>
   {% if entries %}
     <br><br>
-    <table>
-      <tr>
-        <th>Titulo</th>
-        <th>Texto</th>
-        <th>Fecha</th>
-        <th>Acciones</th>
-      </tr>
-      {% for entry in entries %}
-        <tr>
-          <td>{{ entry.title }}</td>
-          <td>{{ entry.text }}</td>
-          <td>{{ entry.created_date }}</td>
-          <td><a href="{% url 'entry_edit' entry.id %}" class="fas fa-edit"></a>
-              <a href="{% url 'entry_delete' entry.id %}" class="fas fa-trash-alt"></a>
-          </td>
+    
+    {% for entry in entries %}
+      <table>
+        <tr width="15%">
+          <th>Titulo</th><td>{{ entry.title }}</td>
         </tr>
-      {% endfor %}
-    </table>
+        <tr>  
+          <th width="15%">Texto</th><td>{{ entry.text }}</td>
+        </tr>
+        <tr>  
+          <th width="15%">Fecha</th><td>{{ entry.created_date }}</td>
+        </tr>
+        <tr>  
+          <th width="15%">Acciones</th><td><a href="{% url 'entry_edit' entry.id %}" class="fas fa-edit"></a>
+                <a href="{% url 'entry_delete' entry.id %}" class="fas fa-trash-alt"></a>
+            </td>
+        </tr>
+      </table><br>
+    {% endfor %}
+
   {% else %}
     <p>No hay entradas en el diario</p>
   {% endif %}

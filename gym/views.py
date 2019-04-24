@@ -181,6 +181,7 @@ def signup(request):
             user.userprofile.birthdate = form.cleaned_data.get('birthdate')
             user.userprofile.user.first_name = form.cleaned_data.get(
                 'first_name')
+            user.userprofile.user.email = form.cleaned_data.get('email')
             user.userprofile.user.last_name = form.cleaned_data.get(
                 'last_name')
             citi = cities.get(int(form.cleaned_data.get('city')))
