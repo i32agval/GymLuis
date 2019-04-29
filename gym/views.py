@@ -547,6 +547,7 @@ def add_relationship(request, pk, add_friend=None):
             status=1)
         relationship.accepted = True
         relationship.status = settings.RELATIONSHIP_FOLLOWING
+        relationship.save()
     except Relationship.DoesNotExist:
         relationship, created = Relationship.objects.get_or_create(
             from_person=actual_user,
