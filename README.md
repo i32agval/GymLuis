@@ -1,5 +1,13 @@
 GymLuis
+=======
 Web application to save and share your progress in the gym
+
+Test User
+=========
+Username: prueba
+----------------
+Password: gymluis1234
+---------------------
 
 Is proveed a requeriments.txt file that you must use to install the dependences:
 pip install -r requirements.txt
