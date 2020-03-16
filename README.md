@@ -1,5 +1,4 @@
-GymLuis
-=======
+# GymLuis
 Web application to save and share your progress in the gym
 
 Test User
