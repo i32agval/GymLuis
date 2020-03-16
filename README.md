@@ -22,13 +22,13 @@ You can:
   Obtain information from the Weathermap API. You can visualize the weather of today and the weather of the next 5 days.
 Creation of an API to obtain all users registered in the platform, accessing api/v1.
 
-*Each information provided by the user can be edited and deleted.
-*Use of generic views (ListView, DetailView and DeleteView) in some cases.
-*Use of decorators to control that the user is registered in the platform before accesing some views.
-*Use of template inheritance. Base_generic.html is the base template, from which the others inherit.
-*Use of templatetags for use a function in the templates.
-*Message system after performing actions on the platform, using django.contrig.messages.
-*CSS and Javascript
+- Each information provided by the user can be edited and deleted.
+- Use of generic views (ListView, DetailView and DeleteView) in some cases.
+- Use of decorators to control that the user is registered in the platform before accesing some views.
+- Use of template inheritance. Base_generic.html is the base template, from which the others inherit.
+- Use of templatetags for use a function in the templates.
+- Message system after performing actions on the platform, using django.contrig.messages.
+- CSS and Javascript
 
 Machines
 ========
@@ -77,7 +77,3 @@ You can search users registered in the platform and send a friend request. If th
 You can visualize your friends (users that has been accepted your invitation or vice versa) and see their photos (and they yours).
 You can add or delete a friend.
 When an user sends a request, the user who receives it will see a message on the main screen, indicating that he has new requests. The user can add or delete the friend.
-
-
-
-
