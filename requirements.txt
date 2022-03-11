@@ -17,6 +17,6 @@ django-columns==0.1.0
 fatsecret==0.2.3
 
 #pillow
-Pillow==5.4.1
+Pillow==9.0.1
 
 
