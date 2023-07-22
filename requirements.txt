@@ -8,7 +8,7 @@ matplotlib==3.0.3
 reportlab==3.4.0
 
 # django-filter
-django-filter==2.1.0
+django-filter==2.4.0
 
 #django-columns
 django-columns==0.1.0
